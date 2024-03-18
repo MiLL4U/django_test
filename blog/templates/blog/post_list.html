@@ -1,28 +1,19 @@
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Test blog</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div>
-        <h1><a href="/">Test Blog</a></h1>
+      <h1><a href="/">Test Blog</a></h1>
     </div>
-    <div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="">My first post</a></h2>
-        <p>Aenean eu leo quam. Hello, World!</p>
-    </div>
-
-    <div>
-        <h1><a href="/">Test Blog</a></h1>
-    </div>
-    <div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="">My second post</a></h2>
-        <p>Hi! Nice to meet you!</p>
-    </div>
-
-</body>
-
+    {% for post in posts %}
+      <div>
+        <p>published: {{ post.published_date }}</p>
+        <h2><a href="">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+      </div>
+    {% endfor %}
+  </body>
 </html>
