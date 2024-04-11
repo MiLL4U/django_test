@@ -29,6 +29,13 @@ h4 {
     color: #00afcc;
 }
 
+.author {
+    color: #132c9e;
+    font-weight: bold;
+    font-size: 12pt;
+    text-align: right;
+}
+
 .save {
     float: right;
 }
