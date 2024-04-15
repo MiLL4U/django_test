@@ -12,16 +12,14 @@
   <body>
     <div class="page-header">
       {% if user.is_authenticated %}
+      <p class="top-menu">Hello, {{ user.username }}!</p>
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
         <form method="post" name="logout_form" action="{% url 'logout' %}">
-          <p class="top-menu">
-            Hello, {{ user.username }}
-            {% csrf_token %}<small>(<a href="javascript:logout_form.submit()">Log out</a>)</small>
-          </p>
+          {% csrf_token %}<a href="javascript:logout_form.submit()" class="top-menu"><span class="glyphicon glyphicon-log-out"></span></a>
         </form>
       {% else %}
-        <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+        <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in"></span></a>
       {% endif %}
 
       <h1><a href="/">Test Blog</a></h1>
