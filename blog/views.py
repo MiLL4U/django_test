@@ -25,7 +25,6 @@ def post_new(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -40,7 +39,6 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user  # type: ignore
-            post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
