@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #ff9400;
+    background-color: #a0023e;
     margin-top: 0;
     margin-left: -20px;
     padding: 20px 20px 20px 40px;
@@ -64,5 +64,6 @@ h4 {
 }
 
 body {
+    background: linear-gradient(90deg, rgb(255, 246, 237), rgb(253, 200, 150));
     padding-left: 15px;
 }
