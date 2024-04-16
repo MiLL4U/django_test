@@ -25,7 +25,7 @@ class Comment(models.Model):
     author = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=False)
-    is_approved = models.BooleanField(default=False)
+    is_approved = models.BooleanField(verbose_name="Approved", default=False)
 
     def approve(self) -> None:
         self.is_approved = True
