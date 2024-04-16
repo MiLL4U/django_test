@@ -21,7 +21,7 @@ def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
 
 
 @login_required
-def post_new(request: HttpRequest) -> HttpResponse:
+def post_new(request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -35,7 +35,8 @@ def post_new(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
+def post_edit(request: HttpRequest, pk: int
+              ) -> HttpResponse | HttpResponseRedirect:
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -57,20 +58,21 @@ def post_draft_list(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-def post_publish(request: HttpRequest, pk: int) -> HttpResponse:
+def post_publish(request: HttpRequest, pk: int) -> HttpResponseRedirect:
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('post_detail', pk=pk)
 
 
 @login_required
-def post_remove(request: HttpRequest, pk: int) -> HttpResponse:
+def post_remove(request: HttpRequest, pk: int) -> HttpResponseRedirect:
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
 
 
-def add_comment_to_post(request: HttpRequest, pk: int) -> HttpResponse:
+def add_comment_to_post(request: HttpRequest, pk: int
+                        ) -> HttpResponse | HttpResponseRedirect:
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
