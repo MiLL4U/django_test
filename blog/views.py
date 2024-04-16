@@ -1,3 +1,5 @@
+from typing import Union
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -21,7 +23,7 @@ def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
 
 
 @login_required
-def post_new(request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
+def post_new(request: HttpRequest) -> Union[HttpResponse, HttpResponseRedirect]:
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -36,7 +38,7 @@ def post_new(request: HttpRequest) -> HttpResponse | HttpResponseRedirect:
 
 @login_required
 def post_edit(request: HttpRequest, pk: int
-              ) -> HttpResponse | HttpResponseRedirect:
+              ) -> Union[HttpResponse, HttpResponseRedirect]:
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -72,7 +74,7 @@ def post_remove(request: HttpRequest, pk: int) -> HttpResponseRedirect:
 
 
 def add_comment_to_post(request: HttpRequest, pk: int
-                        ) -> HttpResponse | HttpResponseRedirect:
+                        ) -> Union[HttpResponse, HttpResponseRedirect]:
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
