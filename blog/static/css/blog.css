@@ -63,6 +63,10 @@ h4 {
     color: #000000;
 }
 
+.comment{
+    margin: 20px 0px 20px 20px;
+}
+
 body {
     background: linear-gradient(90deg, rgb(255, 246, 237), rgb(253, 200, 150));
     padding-left: 15px;
